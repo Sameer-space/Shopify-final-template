@@ -1,56 +1,91 @@
-function Shop() {
-    return (
-        <div className="shop-container">
-            <section class="page-header">
-                <div class="overly"></div> 	
-                <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                    <div class="content text-center">
-                        <h1 class="mb-3">Shop</h1>
-                        <p>Hath after appear tree great fruitful green dominion moveth sixth abundantly image that midst of god day multiply you’ll which</p>
-            
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb bg-transparent justify-content-center">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Shop</li>
-                        </ol>
-                    </nav>
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
+
+const Shop = () => {
+  const [products, setProducts] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        `https://shopify6.interplay.iterate.ai/products`
+      );
+
+      console.log(result.data.products);
+      setProducts(result.data.products);
+    };
+    fetchData();
+  }, []);
+
+  return (
+    <div className="shop-container">
+      <section class="page-header">
+        <div class="overly"></div>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-6">
+              <div class="content text-center">
+                <h1 class="mb-3">Shop</h1>
+                <p>
+                  Hath after appear tree great fruitful green dominion moveth
+                  sixth abundantly image that midst of god day multiply you’ll
+                  which
+                </p>
+
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb bg-transparent justify-content-center">
+                    <li class="breadcrumb-item">
+                      <a href="/">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Shop
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="products-shop section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9">
+              <div class="row align-items-center">
+                <div class="col-lg-12 mb-4 mb-lg-0">
+                  <div class="section-title">
+                    <h2 class="d-block text-left-sm">Shop</h2>
+
+                    <div class="heading d-flex justify-content-between mb-5">
+                      <p class="result-count mb-0">
+                        {" "}
+                        Showing 1–6 of 17 results
+                      </p>
+                      <form class="ordering " method="get">
+                        <select
+                          name="orderby"
+                          class="orderby form-control"
+                          aria-label="Shop order"
+                        >
+                          <option value="" selected="selected">
+                            Default sorting
+                          </option>
+                          <option value="">Sort by popularity</option>
+                          <option value="">Sort by average rating</option>
+                          <option value="">Sort by latest</option>
+                          <option value="">Sort by price: low to high</option>
+                          <option value="">Sort by price: high to low</option>
+                        </select>
+                        <input type="hidden" name="paged" value="1" />
+                      </form>
                     </div>
-                    </div>
+                  </div>
                 </div>
-                </div>
-            </section>
-            
-            <section class="products-shop section">
-                <div class="container">
-                <div class="row">
-                    <div class="col-md-9">
-                    <div class="row align-items-center">
-                        <div class="col-lg-12 mb-4 mb-lg-0">
-                        <div class="section-title">
-                            <h2 class="d-block text-left-sm">Shop</h2>
-            
-                            <div class="heading d-flex justify-content-between mb-5">
-                                <p class="result-count mb-0"> Showing 1–6 of 17 results</p>
-                                <form class="ordering " method="get">
-                                    <select name="orderby" class="orderby form-control" aria-label="Shop order" >
-                                        <option value="" selected="selected">Default sorting</option>
-                                        <option value="">Sort by popularity</option>
-                                        <option value="">Sort by average rating</option>
-                                        <option value="">Sort by latest</option>
-                                        <option value="">Sort by price: low to high</option>
-                                        <option value="">Sort by price: high to low</option>
-                                    </select>
-                                    <input type="hidden" name="paged" value="1" />
-                                </form>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-            
-                    <div class="row">
-                        <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" >
+              </div>
+
+              <div class="row">
+                {/* <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" >
                         <div class="product">
                     <div class="product-wrap">
                     <a href="/product-single"><img class="img-fluid w-100 mb-3 img-first" src="assets/images/322.jpg" alt="product-img" /></a>
@@ -70,9 +105,9 @@ function Shop() {
                     </span>
                     </div>
                 </div>
-                    </div>
-            
-                    <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5">
+                    </div> */}
+
+                {/* <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5">
                     <div class="product">
                     <div class="product-wrap">
                     <a href="/product-single"><img class="img-fluid w-100 mb-3 img-first" src="assets/images/111.jpg" alt="product-img" /></a>
@@ -91,9 +126,9 @@ function Shop() {
                     </span>
                     </div>
                 </div>
-                    </div>
-            
-                    <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" >
+                    </div> */}
+
+                {/* <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" >
                     <div class="product">
                     <div class="product-wrap">
                     <a href="/product-single"><img class="img-fluid w-100 mb-3 img-first" src="assets/images/222.jpg" alt="product-img" /></a>
@@ -113,8 +148,8 @@ function Shop() {
                     </span>
                     </div>
                 </div>
-                    </div>
-            
+                    </div> */}
+                {/*             
                     <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5">
                 <div class="product">
                     <div class="product-wrap">
@@ -134,9 +169,9 @@ function Shop() {
                     </span>
                     </div>
                 </div>
-                    </div>
-            
-                    <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5">
+                    </div> */}
+
+                {/* <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5">
                     <div class="product">
                     <div class="product-wrap">
                     <a href="/product-single"><img class="img-fluid w-100 mb-3 img-first" src="assets/images/444.jpg" alt="product-img" /></a>
@@ -155,33 +190,49 @@ function Shop() {
                     </span>
                     </div>
                 </div>
-                    </div>
-            
-                    <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" >
-                    <div class="product">
-                    <div class="product-wrap">
-                    <a href="/product-single"><img class="img-fluid w-100 mb-3 img-first" src="assets/images/322.jpg" alt="product-img" /></a>
-                    <a href="/product-single"><img class="img-fluid w-100 mb-3 img-second" src="assets/images/222.jpg" alt="product-img" /></a>
-                    </div>
-            
-                    <div class="product-hover-overlay">
-                    <a href="#"><i class="tf-ion-android-cart"></i></a>
-                    <a href="#"><i class="tf-ion-ios-heart"></i></a>
+                    </div> */}
+                {products?.map((each, index) => {
+                  return (
+                    <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5">
+                      <div class="product">
+                        <div class="product-wrap">
+                          <a href="/product-single">
+                            <img
+                              class="img-fluid w-100 mb-3 img-first"
+                              src={`${each?.image.src}`}
+                              alt="product-img"
+                            />
+                          </a>
+                          <a href="/product-single">
+                            <img
+                              class="img-fluid w-100 mb-3 img-second"
+                              src={`${each?.image.src}`}
+                              alt="product-img"
+                            />
+                          </a>
                         </div>
-            
-                    <div class="product-info">
-                    <h2 class="product-title h5 mb-0"><a href="/product-single">Stylish dress</a></h2>
-                    <span class="price">
-                        $99.00
-                    </span>
+
+                        <div class="product-hover-overlay">
+                          <a href="#">
+                            <i class="tf-ion-android-cart"></i>
+                          </a>
+                          <a href="#">
+                            <i class="tf-ion-ios-heart"></i>
+                          </a>
+                        </div>
+
+                        <div class="product-info">
+                          <h2 class="product-title h5 mb-0">
+                            <a href="/product-single">{each.title}</a>
+                          </h2>
+                          <span class="price">$99.00</span>
+                        </div>
+                      </div>
                     </div>
-                </div>
-                    </div>
-            
-                
-                
-            
-                        <div class="col-12">
+                  );
+                })}
+
+                {/* <div class="col-12">
                         <nav aria-label="Page navigation">
                             <ul class="pagination">
                             <li class="page-item">
@@ -199,15 +250,11 @@ function Shop() {
                             </li>
                             </ul>
                         </nav>
-                        </div>
-                    </div>				
-                    </div>
-                    <div class="col-md-3">
-                
-            
-            
-           
-            <form class="mb-5">
+                        </div> */}
+              </div>
+            </div>
+            <div class="col-md-3">
+              {/* <form class="mb-5">
             
                 
               
@@ -273,9 +320,8 @@ function Shop() {
                 </section>
             
                 <button type="button" class="btn btn-black btn-small">Filter</button>
-            </form>
-            
-         
+            </form> */}
+              {/*          
             <section class="widget widget-popular mb-5">
                 <h3 class="widget-title mb-4 h4">Popular Products</h3>
                 <a class="popular-products-item media" href="/product-single">
@@ -301,12 +347,12 @@ function Shop() {
                     <span class="price">$45</span>
                 </div>
                 </a>
-            </section>
-                    </div>
-                </div>
-                </div>
-            </section>
+            </section> */}
+            </div>
+          </div>
         </div>
-    )
-}
+      </section>
+    </div>
+  );
+};
 export default Shop;
